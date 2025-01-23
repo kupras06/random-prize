@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useTransition } from "react";
-import { Counter } from "./Counter.js";
 import { onGenerateUserPrize } from "./GeneratePrize.telefunc";
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data.js";
@@ -30,29 +29,31 @@ export default function Page() {
 			>
 				Generate Prize
 			</Button>
-			<Box
-				align="center"
-				my="md"
-				bd="1"
-				maw={300}
-				mx="auto"
-				bg={`${colorCode[currentPrize.prizeType]}.1`}
-				style={{ backgroundColor: "white", borderRadius: 10, padding: 20 }}
-			>
-				<Text
-					size="xl"
-					weight="bold"
+			{currentPrize ? (
+				<Box
 					align="center"
-					color={colorCode[currentPrize.prizeType]}
-					style={{
-						fontSize: 50,
-						transform: "rotate(-4deg)",
-						textTransform: "uppercase",
-					}}
+					my="md"
+					bd="1"
+					maw={300}
+					mx="auto"
+					bg={`${colorCode[currentPrize.prizeType]}.1`}
+					style={{ backgroundColor: "white", borderRadius: 10, padding: 20 }}
 				>
-					{currentPrize.prizeType}
-				</Text>
-			</Box>
+					<Text
+						size="xl"
+						weight="bold"
+						align="center"
+						color={colorCode[currentPrize.prizeType]}
+						style={{
+							fontSize: 50,
+							transform: "rotate(-4deg)",
+							textTransform: "uppercase",
+						}}
+					>
+						{currentPrize.prizeType}
+					</Text>
+				</Box>
+			) : null}
 			<Group spacing="xs" py="md">
 				{prizes.map((prize) => (
 					<Badge color={colorCode[prize.prizeType]} key={prize.id}>

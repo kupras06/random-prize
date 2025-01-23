@@ -1,4 +1,4 @@
-import { dbSqlite } from "./database/drizzle/db";
+import type { dbSqlite } from "./database/drizzle/db";
 
 declare module "telefunc" {
 	namespace Telefunc {

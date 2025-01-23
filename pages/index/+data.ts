@@ -8,7 +8,7 @@ export type Data = Awaited<ReturnType<typeof data>>;
 
 export const data = async (pageContext) => {
 	// https://vike.dev/useConfig
-	const identifier = pageContext.req.ip || pageContext.req.useragent.source;
+	const identifier = pageContext.req?.ip || pageContext.req?.useragent?.source;
 	const prizes = await drizzleQueries.getAllPrizesForUser(
 		pageContext.db,
 		identifier,

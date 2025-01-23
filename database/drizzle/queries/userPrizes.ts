@@ -17,6 +17,7 @@ export async function getAllPrizesForUser(
 	db: ReturnType<typeof dbSqlite>,
 	identifier: string,
 ) {
+	if (!db) return [];
 	const query = db
 		.selectFrom("user_prizes")
 		.where("identifier", "=", identifier)
