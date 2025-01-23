@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useTransition } from "react";
 import { onGenerateUserPrize } from "./GeneratePrize.telefunc";
+import { GeneratePrize} from "./GeneratePrize";
 import { useData } from "vike-react/useData";
 import type { Data } from "./+data.js";
 import { Button, Group, Badge, Box, Text } from "@mantine/core";
@@ -20,47 +21,5 @@ export default function Page() {
 			setPrizes(awaitedPrizes);
 		});
 	};
-	return (
-		<>
-			<Button
-				loading={isPending}
-				disabled={isPending}
-				onClick={() => handlePrizeGenerate()}
-			>
-				Generate Prize
-			</Button>
-			{currentPrize ? (
-				<Box
-					align="center"
-					my="md"
-					bd="1"
-					maw={300}
-					mx="auto"
-					bg={`${colorCode[currentPrize.prizeType]}.1`}
-					style={{ backgroundColor: "white", borderRadius: 10, padding: 20 }}
-				>
-					<Text
-						size="xl"
-						weight="bold"
-						align="center"
-						color={colorCode[currentPrize.prizeType]}
-						style={{
-							fontSize: 50,
-							transform: "rotate(-4deg)",
-							textTransform: "uppercase",
-						}}
-					>
-						{currentPrize.prizeType}
-					</Text>
-				</Box>
-			) : null}
-			<Group spacing="xs" py="md">
-				{prizes.map((prize) => (
-					<Badge color={colorCode[prize.prizeType]} key={prize.id}>
-						{prize.prizeType}
-					</Badge>
-				))}
-			</Group>
-		</>
-	);
+	return <GeneratePrize />
 }

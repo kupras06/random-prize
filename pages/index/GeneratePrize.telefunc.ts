@@ -9,11 +9,11 @@ const generatePrize = () => {
 
 export async function onGenerateUserPrize() {
 	const context = getContext();
-	const identifier = context.req?.ip || context.req?.useragent?.source;
+	const identifier = context.req?.deviceId || context.req?.ip || context.req?.useragent?.source;
 	const prizeType = generatePrize();
 	if (identifier)
 		await drizzleQueries.insertUserPize(context.db, { prizeType, identifier });
-	const prizes = await drizzleQueries.getAllPrizesForUser(
+	const prizes =  await drizzleQueries.getAllPrizesForUser(
 		context.db,
 		identifier,
 	);
